@@ -1,0 +1,28 @@
+---
+- name: install sqm-scripts package
+  opkg:
+    name: sqm-scripts
+    state: present
+    update_cache: yes
+
+- name: install luci-app-sqm package
+  opkg:
+    name: luci-app-sqm
+    state: present
+  when: luci_support == True
+
+- name: set queue
+  include: set_queue.yml
+  vars:
+    interface: "{{item.key}}"
+    enabled: "{{item.value.enabled}}"
+    upload: "{{item.value.upload}}"
+    download: "{{item.value.download}}"
+    qdisc: "{{item.value.qdisc}}"
+    qdisc_advanced: "{{item.value.qdisc_advanced}}"
+    qdisc_really_really_advanced: "{{item.value.qdisc_really_really_advanced}}"
+    script: "{{item.value.script}}"
+    linklayer: "{{item.value.linklayer}}"
+    debug_logging: "{{item.value.debug_logging}}"
+    verbosity: "{{item.value.verbosity}}"
+  with_dict: "{{queues}}"

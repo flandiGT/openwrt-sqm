@@ -1,0 +1,6 @@
+---
+- name: uci commit sqm
+  uci: command=commit config=sqm
+
+- name: reload sqm
+  raw: /etc/init.d/sqm reload
