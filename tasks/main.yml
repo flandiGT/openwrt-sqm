@@ -16,19 +16,19 @@
     command: set_object
     config: sqm
     type: queue
-    section: '{{item.key}}'
+    section: '{{ item.key }}'
     values:
-      enabled: "{{item.value.enabled | default(None) | int(None)}}"
-      upload: "{{item.value.upload}}"
-      download: "{{item.value.download}}"
-      qdisc: "{{item.value.qdisc}}"
-      qdisc_advanced: "{{item.value.qdisc_advanced | default(None) | int(None)}}"
-      qdisc_really_really_advanced: "{{item.value.qdisc_really_really_advanced | default(None) | int(None)}}"
-      script: "{{item.value.script}}"
-      linklayer: "{{item.value.linklayer}}"
-      debug_logging: "{{item.value.debug_logging | default(None) | int(None)}}"
-      verbosity: "{{item.value.verbosity}}"
-  with_dict: "{{queues}}"
+      enabled: "{{ item.value.enabled | default(None) | int(None) }}"
+      upload: "{{ item.value.upload }}"
+      download: "{{ item.value.download }}"
+      qdisc: "{{ item.value.qdisc }}"
+      qdisc_advanced: "{{ item.value.qdisc_advanced | default(None) | int(None) }}"
+      qdisc_really_really_advanced: "{{ item.value.qdisc_really_really_advanced | default(None) | int(None) }}"
+      script: "{{ item.value.script }}"
+      linklayer: "{{ item.value.linklayer }}"
+      debug_logging: "{{ item.value.debug_logging | default(None) | int(None) }}"
+      verbosity: "{{ item.value.verbosity }}"
+  with_dict: "{{ queues }}"
   notify:
     - uci commit sqm
     - reload sqm
