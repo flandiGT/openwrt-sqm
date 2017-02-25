@@ -4,12 +4,18 @@ openwrt-sqm
 configure sqm (Smart Queue Management) aspects of your openwrt system.
 compare: [https://wiki.openwrt.org/doc/uci/sqm]
 
+Dependencies
+------------
+
+* [openwrt-uci](https://github.com/flandiGT/openwrt-uci)
+* python installed (if any package is being to installed)
+
 Role Variables
 --------------
 
 | variable name     | type             | description/structure                       | default |
 |-------------------|------------------|---------------------------------------------|---------|
-| queues            | map of objects   | key: interface, value: see attributes below | <empty> |
+| queues            | map of objects   | key: interface, value: see attributes below | []      |
 
 Role Variable elements
 ----------------------
@@ -30,11 +36,6 @@ interfaces attributes:
 | debug_log                    | boolean             | ?          | see documentation on openwrt.org |
 | verbosity                    | number              | ?          | see documentation on openwrt.org |
 
-Dependencies
-------------
-
-* openwrt-uci
-
 Example Playbook
 ----------------
 
@@ -47,7 +48,7 @@ Example Playbook
         upload: 975
         download: 18000
         qdisc: fq_codel
-        qdisc_advanced: False
+        qdisc_advanced: None
         qdisc_really_really_advanced: True
         script: simple.qos
         linklayer: none
@@ -55,4 +56,5 @@ Example Playbook
         verbosity: 2
 ```
 
-[https://wiki.openwrt.org/doc/uci/sqm]: https://wiki.openwrt.org/doc/uci/sqm
+Official documentation:
+* [OpenWRT Wiki / Smart Queue Management (SQM)](https://wiki.openwrt.org/doc/uci/sqm)
